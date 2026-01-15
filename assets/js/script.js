@@ -1,3 +1,21 @@
+// Loading Screen Logic
+window.addEventListener('DOMContentLoaded', () => {
+  const loadingScreen = document.getElementById('loading-screen');
+  const appContainer = document.getElementById('app');
+
+  // Hide loading after a brief moment
+  setTimeout(() => {
+    if (loadingScreen) {
+      loadingScreen.classList.add('fade-out');
+      setTimeout(() => {
+        loadingScreen.style.display = 'none';
+      }, 500);
+    }
+    if (appContainer) {
+      appContainer.classList.remove('hidden');
+    }
+  }, 1500); // Show loading for 1.5 seconds
+});
 
 // Gift Selection Logic
 let selectedGift = null;
@@ -76,7 +94,7 @@ window.confirmarPresente = function (event) {
     text += `\nMensagem Carinhosa: "${message}"`;
   }
 
-  const whatsappUrl = `https://wa.me/558191827280?text=${encodeURIComponent(text)}`;
+  const whatsappUrl = `https://wa.me/5581991827280?text=${encodeURIComponent(text)}`;
 
   // Open WhatsApp
   window.open(whatsappUrl, '_blank');
