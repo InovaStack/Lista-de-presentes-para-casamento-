@@ -1,0 +1,80 @@
+/* Intro Loader Styles */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--blush-pink-bg);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 0.8s ease-out, visibility 0.8s;
+}
+
+.intro-content {
+    text-align: center;
+    animation: fadeIn 1s ease;
+}
+
+.intro-names {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--primary-olive);
+    margin-bottom: 20px;
+}
+
+.heart-pulse {
+    font-size: 2.5rem;
+    color: var(--blush-pink-accent);
+    /* Or maybe a soft pink/red? Let's use accent but maybe darker? or just secondary olive? Let's try Primary Dark or a specific heart color */
+    color: #c5a059;
+    /* Gold/Olive mix */
+    color: var(--secondary-olive);
+    margin: 20px 0;
+    animation: pulse 1.5s infinite;
+}
+
+.intro-text {
+    font-family: var(--font-body);
+    color: var(--text-light);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}

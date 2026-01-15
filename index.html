@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucas & Ana - Lista Exclusiva para Padrinhos</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <!-- Intro Loader -->
+  <div id="intro-loader" class="intro-overlay">
+    <div class="intro-content">
+      <h1 class="intro-names">Luiz Carlos & Patrícia</h1>
+      <div class="heart-pulse"><i class="fas fa-heart"></i></div>
+      <p class="intro-text">Carregando nossa história...</p>
+    </div>
+  </div>
+
+  <!-- Main Application -->
+  <div id="app" class="app-container hidden">
+
+    <header class="app-header">
+      <div class="header-content">
+        <h1>Luiz Carlos & Patrícia</h1>
+        <p class="subtitle">Nossa maior alegria é ter você celebrando esse momento conosco. Caso deseje nos presentear,
+          preparamos esta lista com carinho. </p>
+        <div class="date-badge">14 . MARÇO . 2026</div>
+      </div>
+    </header>
+
+    <main class="main-layout">
+
+      <!-- Gift List (Full Width) -->
+      <section class="gift-section centered-content">
+        <div class="section-header">
+          <h2><i class="fas fa-gift"></i> Presentes</h2>
+          <p>Selecione um item especial para presentear</p>
+        </div>
+
+        <div class="gift-grid" id="gift-grid">
+
+          <div class="gift-card" onclick="openGiftModal(this)" data-id="1" data-name="Mesa de Doces"
+            data-img="assets/img/Doces.jpeg">
+            <div class="card-image">
+              <img src="assets/img/Doces.jpeg" alt="Doces">
+              <div class="overlay"><i class="fas fa-heart"></i> Presentear</div>
+            </div>
+            <div class="card-info">
+              <h3>Doces</h3>
+              <p>Para adocicar momentos inesquecíveis</p>
+              <div class="gift-price">R$ 450,00</div>
+            </div>
+          </div>
+
+          <div class="gift-card" onclick="openGiftModal(this)" data-id="2" data-name="Ajuda para o Civil"
+            data-img="assets/img/Civil.jpeg">
+            <div class="card-image">
+              <img src="assets/img/Civil.jpeg" alt="Civil">
+              <div class="overlay"><i class="fas fa-heart"></i> Presentear</div>
+            </div>
+            <div class="card-info">
+              <h3>Civil</h3>
+              <p>Contribuição para nossa união oficial</p>
+              <div class="gift-price">R$ 400,00</div>
+            </div>
+          </div>
+
+          <div class="gift-card" onclick="openGiftModal(this)" data-id="3" data-name="Jantar Especial"
+            data-img="assets/img/Jantar.jpeg">
+            <div class="card-image">
+              <img src="assets/img/Jantar.jpeg" alt="Jantar">
+              <div class="overlay"><i class="fas fa-heart"></i> Presentear</div>
+            </div>
+            <div class="card-info">
+              <h3>Jantar</h3>
+              <p>Para celebrar nosso amor</p>
+              <div class="gift-price">R$ 450,00</div>
+            </div>
+          </div>
+
+          <div class="gift-card" onclick="openGiftModal(this)" data-id="4" data-name="Bebidas da Festa"
+            data-img="assets/img/Bebidas.jpeg">
+            <div class="card-image">
+              <img src="assets/img/Bebidas.jpeg" alt="Bebidas">
+              <div class="overlay"><i class="fas fa-heart"></i> Presentear</div>
+            </div>
+            <div class="card-info">
+              <h3>Bebidas</h3>
+              <p>Para brindar com alegria</p>
+              <div class="gift-price">R$ 300,00</div>
+            </div>
+          </div>
+
+          <div class="gift-card" onclick="openGiftModal(this)" data-id="4" data-name="Bebidas da Festa"
+            data-img="assets/img/Bebidas.jpeg">
+            <div class="card-image">
+              <img src="assets/img/Viagem.jpeg" alt="Bebidas">
+              <div class="overlay"><i class="fas fa-heart"></i> Presentear</div>
+            </div>
+            <div class="card-info">
+              <h3>Viagem</h3>
+              <p>Um novo destino para criar memórias inesquecíveis.</p>
+              <div class="gift-price">R$ 500,00</div>
+            </div>
+          </div>
+
+          <div class="gift-card" onclick="openGiftModal(this)" data-id="5" data-name="Lembrancinhas"
+            data-img="assets/img/Lembrançinhas.jpeg">
+            <div class="card-image">
+              <img src="assets/img/Lembrançinhas.jpeg" alt="Lembrancinhas">
+              <div class="overlay"><i class="fas fa-heart"></i> Presentear</div>
+            </div>
+            <div class="card-info">
+              <h3>Lembrancinhas</h3>
+              <p>Detalhes que encantam</p>
+              <div class="gift-price">R$ 300,00</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Gift Selection Modal -->
+    <div id="gift-modal" class="modal-overlay hidden">
+      <div class="modal-content glass gift-modal-content">
+        <button class="close-modal" onclick="closeGiftModal()">&times;</button>
+
+        <div class="gift-preview-header">
+          <img id="modal-img" src="" alt="Presente">
+          <h3 id="modal-gift-name">Nome do Presente</h3>
+        </div>
+
+        <form id="gift-form" onsubmit="confirmarPresente(event)">
+          <div class="form-group">
+            <label for="padrinhos-names">Nome do Casal de Padrinhos</label>
+            <input type="text" id="padrinhos-names" placeholder="Ex: João e Maria" required>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Mensagem Carinhosa</label>
+            <textarea id="message" rows="4" placeholder="Deixe uma mensagem especial para os noivos..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-confirm">
+            Confirmar Presente <i class="fab fa-whatsapp"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-couple">
+        <p>Com carinho, Luiz Carlos & Patrícia &hearts;</p>
+      </div>
+
+      <div class="footer-developer">
+        <p>© 2025 Lucas Pedro — InovaStack. Todos os direitos reservados.</p>
+
+        <a href="https://www.instagram.com/inova_stack?igsh=dDl5b3ZkcjE2eG83" target="_blank" class="instagram-link">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+
+</html>
