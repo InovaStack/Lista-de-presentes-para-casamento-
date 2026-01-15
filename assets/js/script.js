@@ -1,10 +1,10 @@
 
-
 // Gift Selection Logic
 let selectedGift = null;
 const giftModal = document.getElementById('gift-modal');
 
-function openGiftModal(cardElement) {
+// Attach to window to ensure global access (fixes deployment/scoping issues)
+window.openGiftModal = function (cardElement) {
   // Get data
   const id = cardElement.getAttribute('data-id');
   const name = cardElement.getAttribute('data-name');
@@ -13,40 +13,56 @@ function openGiftModal(cardElement) {
   selectedGift = { id, name, img };
 
   // Populate Modal
-  document.getElementById('modal-img').src = img;
-  document.getElementById('modal-gift-name').textContent = name;
+  const modalImg = document.getElementById('modal-img');
+  const modalName = document.getElementById('modal-gift-name');
+
+  if (modalImg) modalImg.src = img;
+  if (modalName) modalName.textContent = name;
 
   // Clear inputs
-  document.getElementById('padrinhos-names').value = '';
-  document.getElementById('message').value = '';
+  const nameInput = document.getElementById('padrinhos-names');
+  const msgInput = document.getElementById('message');
+
+  if (nameInput) nameInput.value = '';
+  if (msgInput) msgInput.value = '';
 
   // Show Modal
-  giftModal.classList.remove('hidden');
+  if (giftModal) {
+    giftModal.classList.remove('hidden');
+    // Ensure display is block or flex if purely hidden class isn't enough (though CSS handles it)
+  }
 }
 
-function closeGiftModal() {
-  giftModal.classList.add('hidden');
+window.closeGiftModal = function () {
+  if (giftModal) {
+    giftModal.classList.add('hidden');
+  }
   selectedGift = null;
 }
 
 // Close modal if clicked outside content
-giftModal.addEventListener('click', (e) => {
-  if (e.target === giftModal) {
-    closeGiftModal();
-  }
-});
-
-function confirmGift(event) {
-  confirmarPresente(event);
+if (giftModal) {
+  giftModal.addEventListener('click', (e) => {
+    if (e.target === giftModal) {
+      window.closeGiftModal();
+    }
+  });
 }
 
-function confirmarPresente(event) {
+window.confirmGift = function (event) {
+  window.confirmarPresente(event);
+}
+
+window.confirmarPresente = function (event) {
   event.preventDefault();
 
   if (!selectedGift) return;
 
-  const names = document.getElementById('padrinhos-names').value.trim();
-  const message = document.getElementById('message').value.trim();
+  const namesField = document.getElementById('padrinhos-names');
+  const messageField = document.getElementById('message');
+
+  const names = namesField ? namesField.value.trim() : '';
+  const message = messageField ? messageField.value.trim() : '';
 
   if (!names) {
     alert("Por favor, digite o nome dos padrinhos.");
@@ -86,5 +102,5 @@ function confirmarPresente(event) {
   }
 
   // Close and Confirm visual feedback
-  closeGiftModal();
+  window.closeGiftModal();
 }
