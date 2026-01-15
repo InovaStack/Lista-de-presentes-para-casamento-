@@ -618,7 +618,7 @@ footer {
   }
 
   .app-header h1 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     line-height: 1.1;
   }
 
@@ -628,61 +628,112 @@ footer {
   }
 
   .intro-names {
-    font-size: 2.8rem;
+    font-size: 3rem;
     padding: 0 15px;
   }
 
   .gift-grid {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 15px;
+    gap: 20px;
   }
 
   .gift-card .card-image {
     height: 180px;
   }
 
-  .gift-card .overlay {
-    font-size: 1.2rem;
-  }
-
   .modal-content {
     width: 90%;
-    margin: 0 10px;
-    padding: 25px;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+
+  .close-modal {
+    top: 10px;
+    right: 15px;
+    font-size: 2.5rem;
+    /* Larger touch target */
+    padding: 10px;
   }
 
   .date-badge {
     font-size: 1.4rem;
     padding: 8px 30px;
   }
+
+  /* Form inputs optimized for touch */
+  .form-group input,
+  .form-group textarea {
+    font-size: 16px;
+    /* Prevents auto-zoom on iOS */
+    padding: 16px;
+  }
+
+  .btn-confirm {
+    padding: 16px 20px;
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
   .app-header h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .gift-grid {
     grid-template-columns: 1fr;
-    /* Single column on very small screens for better visibility */
-    gap: 25px;
+    gap: 30px;
+    padding: 0 10px;
+  }
+
+  .gift-card {
+    box-shadow: 0 10px 20px rgba(93, 110, 65, 0.1);
+    /* Softer shadow for mobile depth */
   }
 
   .gift-card .card-image {
-    height: 240px;
-    /* Taller images on mobile for impact */
+    height: 250px;
+  }
+
+  /* Improve overlay visibility on mobile without hover */
+  .gift-card .overlay {
+    background: linear-gradient(to top, rgba(93, 110, 65, 0.9), transparent);
+    opacity: 1;
+    /* Always visible on mobile */
+    top: auto;
+    bottom: 0;
+    height: 60px;
+    /* Only bottom strip */
+    font-size: 1.1rem;
   }
 }
 
-/* Performance Optimizations */
+/* Touch Device Optimizations */
+@media (hover: none) {
+  .gift-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s;
+  }
+
+  .btn-confirm:active {
+    transform: scale(0.98);
+    background: var(--primary-olive-dark);
+  }
+}
+
+/* Performance & Safe Areas */
 .gift-card,
 .btn-confirm,
-.instagram-link {
+.instagram-link,
+.modal-content {
   will-change: transform;
   transform: translateZ(0);
-  /* Hardware acceleration */
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+  /* iPhone X+ support */
 }

@@ -1,21 +1,35 @@
 // Intro Loader Logic
-window.addEventListener('load', () => {
+function removeLoader() {
   const loader = document.getElementById('intro-loader');
   const appContent = document.getElementById('app');
 
-  // Ensure app is visible behind (or ready to be shown)
+  // Prevent running twice
+  if (!loader || loader.classList.contains('fade-out')) return;
+
+  // Ensure app is visible behind
   appContent.classList.remove('hidden');
 
   setTimeout(() => {
     loader.classList.add('fade-out');
-
-    // Optional: Remove from DOM after transition to avoid clicks
     setTimeout(() => {
       loader.style.display = 'none';
-    }, 800); // Match transition duration
+    }, 800);
+  }, 1000); // 1.0 second fixed branding time
+}
 
-  }, 2500); // 2.5 seconds reading time
-});
+// Try to remove loader as soon as DOM is ready (don't wait for all images if slow)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', removeLoader);
+} else {
+  // DOM already ready
+  removeLoader();
+}
+
+// Safety fallback: ensure it runs on full load if DOMContentLoaded somehow missed
+window.addEventListener('load', removeLoader);
+
+// Fail-safe: Force remove after 5 seconds max if anything hangs
+setTimeout(removeLoader, 5000);
 
 // Gift Selection Logic
 let selectedGift = null;
