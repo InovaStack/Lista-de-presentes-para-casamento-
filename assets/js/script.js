@@ -65,7 +65,26 @@ function confirmarPresente(event) {
   // Open WhatsApp
   window.open(whatsappUrl, '_blank');
 
+  // Update the gift card image to "Wrapped Gift" visually
+  if (selectedGift && selectedGift.id) {
+    const giftCard = document.querySelector(`.gift-card[data-id="${selectedGift.id}"]`);
+    if (giftCard) {
+      const img = giftCard.querySelector('img');
+      if (img) {
+        img.src = 'assets/img/gift_wrapped.png'; // Change to wrapped gift image
+        img.alt = 'Presente Escolhido';
+      }
+      // Optional: Add a visual indicator class
+      giftCard.classList.add('gift-chosen');
+
+      // Update the "Presentear" overlay text
+      const overlayText = giftCard.querySelector('.overlay');
+      if (overlayText) {
+        overlayText.innerHTML = '<i class="fas fa-check"></i> Escolhido';
+      }
+    }
+  }
+
   // Close and Confirm visual feedback
   closeGiftModal();
-  alert(`Obrigado, ${names}! Sua escolha foi registrada.`);
 }

@@ -430,6 +430,24 @@ body {
   letter-spacing: 0.5px;
 }
 
+/* Chosen Gift State */
+.gift-chosen {
+  pointer-events: none;
+  /* Disable clicking again */
+  border-color: var(--primary-olive);
+}
+
+.gift-chosen img {
+  transform: none !important;
+  /* Stop hover zoom */
+  opacity: 0.9;
+}
+
+.gift-chosen .overlay {
+  opacity: 1;
+  background: rgba(93, 110, 65, 0.95);
+}
+
 /* Footer */
 footer {
   text-align: center;
