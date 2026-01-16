@@ -108,14 +108,14 @@ window.confirmarPresente = function (event) {
 
   // Se for repetição, adiciona informação na mensagem
   if (selectedGift.isRepeat) {
-    text += `Também queremos presentear vocês com: *${selectedGift.name}* 🎁🎁\n`;
-    text += `_(Este presente está sendo presenteado mais de uma vez)_\n`;
+    text += `Também queremos presentear vocês com: *${selectedGift.name}*\n`;
+    text += `_(Este item já foi selecionado anteriormente, mas decidimos presentear vocês com ele também!)_\n`;
   } else {
-    text += `Escolhemos presentear vocês com: *${selectedGift.name}* 🎁\n`;
+    text += `Escolhemos presentear vocês com: *${selectedGift.name}*\n`;
   }
 
   if (message) {
-    text += `\nMensagem Carinhosa: "${message}"`;
+    text += `\nMensagem Carinhosa:\n"${message}"`;
   }
 
   const whatsappUrl = `https://wa.me/5581989559729?text=${encodeURIComponent(text)}`;
