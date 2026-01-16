@@ -27,15 +27,31 @@ window.openGiftModal = function (cardElement) {
   const id = cardElement.getAttribute('data-id');
   const name = cardElement.getAttribute('data-name');
   const img = cardElement.getAttribute('data-img');
+  const isChosen = cardElement.classList.contains('gift-chosen');
 
-  selectedGift = { id, name, img };
+  selectedGift = { id, name, img, isRepeat: isChosen };
 
   // Populate Modal
   const modalImg = document.getElementById('modal-img');
   const modalName = document.getElementById('modal-gift-name');
+  const modalSubtitle = document.getElementById('modal-subtitle');
 
-  if (modalImg) modalImg.src = img;
-  if (modalName) modalName.textContent = name;
+  // Se o presente já foi escolhido, mostra a imagem embrulhada e mensagem especial
+  if (isChosen) {
+    if (modalImg) modalImg.src = 'assets/img/gift_wrapped.png';
+    if (modalName) modalName.textContent = name;
+    if (modalSubtitle) {
+      modalSubtitle.textContent = '✨ Este presente já foi escolhido! Mas você pode presentear novamente.';
+      modalSubtitle.style.color = 'var(--primary-olive)';
+      modalSubtitle.style.fontWeight = '500';
+    }
+  } else {
+    if (modalImg) modalImg.src = img;
+    if (modalName) modalName.textContent = name;
+    if (modalSubtitle) {
+      modalSubtitle.textContent = '';
+    }
+  }
 
   // Clear inputs
   const nameInput = document.getElementById('padrinhos-names');
@@ -88,13 +104,21 @@ window.confirmarPresente = function (event) {
   }
 
   // Construct WhatsApp Message
-  let text = `Olá! Somos os padrinhos *${names}*.\n`;
-  text += `Escolhemos presentear vocês com: *${selectedGift.name}* 🎁\n`;
+  let text = `Olá! Somos os padrinhos *${names}*.\n\n`;
+
+  // Se for repetição, adiciona informação na mensagem
+  if (selectedGift.isRepeat) {
+    text += `Também queremos presentear vocês com: *${selectedGift.name}* 🎁🎁\n`;
+    text += `_(Este presente está sendo presenteado mais de uma vez)_\n`;
+  } else {
+    text += `Escolhemos presentear vocês com: *${selectedGift.name}* 🎁\n`;
+  }
+
   if (message) {
     text += `\nMensagem Carinhosa: "${message}"`;
   }
 
-  const whatsappUrl = `https://wa.me/5581991827280?text=${encodeURIComponent(text)}`;
+  const whatsappUrl = `https://wa.me/5581989559729?text=${encodeURIComponent(text)}`;
 
   // Open WhatsApp
   window.open(whatsappUrl, '_blank');
@@ -108,7 +132,7 @@ window.confirmarPresente = function (event) {
         img.src = 'assets/img/gift_wrapped.png'; // Change to wrapped gift image
         img.alt = 'Presente Escolhido';
       }
-      // Optional: Add a visual indicator class
+      // Add visual indicator class (mantém clicável para repetições)
       giftCard.classList.add('gift-chosen');
 
       // Update the "Presentear" overlay text

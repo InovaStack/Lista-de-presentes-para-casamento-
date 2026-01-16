@@ -432,8 +432,7 @@ body {
 
 /* Chosen Gift State */
 .gift-chosen {
-  pointer-events: none;
-  /* Disable clicking again */
+  /* Removido pointer-events: none para permitir repetições */
   border-color: var(--primary-olive);
 }
 
@@ -446,6 +445,15 @@ body {
 .gift-chosen .overlay {
   opacity: 1;
   background: rgba(93, 110, 65, 0.95);
+}
+
+/* Modal Subtitle */
+.modal-subtitle {
+  font-size: 0.95rem;
+  text-align: center;
+  margin-top: 15px;
+  font-style: italic;
+  line-height: 1.5;
 }
 
 /* Footer */
